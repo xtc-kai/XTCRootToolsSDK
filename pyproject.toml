@@ -1,0 +1,43 @@
+[project]
+name = "xtcroottoolssdk"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pytest>=8.4.2",
+]
+
+[index]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "pytest-mock>=3.10.0",
+    "pytest-asyncio>=0.21.0",
+]
+
+# [tool.uv.sources]
+# pytest = { version = "^7.0.0" }
+
+# 添加 pytest 配置
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --strict-markers --strict-config"
+markers = [
+    "slow: marks tests as slow",
+    "integration: integration tests",
+    "unit: unit tests",
+]
+
+[tool.coverage.run]
+source = ["XTCRoot"]
+omit = [
+    "*/tests/*",
+    "*/__pycache__/*",
+]
